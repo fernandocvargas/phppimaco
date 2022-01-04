@@ -10,7 +10,10 @@ use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\ImageData\LogoImageData;
 use Endroid\QrCode\Label\Font\Font;
 use Endroid\QrCode\Label\Label;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeEnlarge;
 use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeNone;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeShrink;
 use Endroid\QrCode\Writer\PngWriter;
 
 class QrCode
@@ -85,11 +88,6 @@ class QrCode
      */
     public function setMargin($margin)
     {
-        // if (is_array($margin)) {
-        //     $margin = implode("mm ", $margin).'mm';
-        // } else {
-        //     $margin = $margin."mm";
-        // }
         $this->margin = $margin;
         return $this;
     }
@@ -121,7 +119,7 @@ class QrCode
             ->data($this->content)
             ->encoding(new Encoding('UTF-8'))
             ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
-            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+            ->roundBlockSizeMode(new RoundBlockSizeModeNone())
             ->foregroundColor(new Color(0, 0, 0))
             ->backgroundColor(new Color(255, 255, 255))
         ;
