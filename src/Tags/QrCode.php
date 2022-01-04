@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace Proner\PhpPimaco\Tags;
 
+use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
@@ -9,6 +10,7 @@ use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\ImageData\LogoImageData;
 use Endroid\QrCode\Label\Font\Font;
 use Endroid\QrCode\Label\Label;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 use Endroid\QrCode\Writer\PngWriter;
 
 class QrCode
@@ -27,7 +29,7 @@ class QrCode
      * @param string $content
      * @param string|null $typeCode
      */
-    public function __construct(string $content, string $typeCode = null)
+    public function __construct(string $content)
     {
         $this->content = $content;
         $this->labelFontSize = 12;
@@ -78,16 +80,16 @@ class QrCode
     }
 
     /**
-     * @param $margin
+     * @param int $margin
      * @return $this
      */
     public function setMargin($margin)
     {
-        if (is_array($margin)) {
-            $margin = implode("mm ", $margin).'mm';
-        } else {
-            $margin = $margin."mm";
-        }
+        // if (is_array($margin)) {
+        //     $margin = implode("mm ", $margin).'mm';
+        // } else {
+        //     $margin = $margin."mm";
+        // }
         $this->margin = $margin;
         return $this;
     }
@@ -113,11 +115,30 @@ class QrCode
      */
     public function render()
     {
-        $qrcode = new \Endroid\QrCode\QrCode($this->content);
-        $qrcode->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh());
-        $qrcode->setEncoding(new Encoding('UTF-8'));
-        $qrcode->setForegroundColor(new Color(0, 0, 0, 0));
-        $qrcode->setBackgroundColor(new Color(255, 255, 255, 0));
+        $builder = Builder::create();
+        $builder->writer(new PngWriter())
+            ->writerOptions([])
+            ->data($this->content)
+            ->encoding(new Encoding('UTF-8'))
+            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
+            ->foregroundColor(new Color(0, 0, 0))
+            ->backgroundColor(new Color(255, 255, 255))
+        ;
+        
+        if ($this->margin !== null) {
+            $builder->margin($this->margin);
+        }
+
+        if (!empty($this->size)) {
+            $builder->size($this->size);
+        }
+
+        if (!empty($this->label)) {
+            $builder->labelText($this->label);
+        }
+
+        $result = $builder->build();
 
         if ($this->br === null) {
             if ($this->align == 'left') {
@@ -127,26 +148,10 @@ class QrCode
             }
         }
 
-        if ($this->margin !== null) {
-            $styles[] = "margin: {$this->margin}";
-        }
-
-        if (!empty($this->size)) {
-            $qrcode->setSize($this->size);
-        }
-
+        $style = "";
         if (!empty($styles)) {
             $style = "style='".implode(";", $styles)."'";
-        } else {
-            $style = "";
         }
-
-        $writer = new PngWriter();
-        $label = null;
-        if (!empty($this->label)) {
-            $label = Label::create($this->label);
-        }
-        $result = $writer->write($qrcode, null, $label);
 
         return "<img ".$style." src='{$result->getDataUri()}'>".$this->br;
     }
