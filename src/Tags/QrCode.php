@@ -2,7 +2,14 @@
 declare(strict_types = 1);
 namespace Proner\PhpPimaco\Tags;
 
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\ImageData\LogoImageData;
+use Endroid\QrCode\Label\Font\Font;
+use Endroid\QrCode\Label\Label;
+use Endroid\QrCode\Writer\PngWriter;
 
 class QrCode
 {
@@ -31,10 +38,10 @@ class QrCode
     }
 
     /**
-     * @param float $size
+     * @param int $size
      * @return $this
      */
-    public function setSize(float $size)
+    public function setSize(int $size)
     {
         $this->size = $size;
         return $this;
@@ -51,10 +58,10 @@ class QrCode
     }
 
     /**
-     * @param float $labelFontSize
+     * @param int $labelFontSize
      * @return $this
      */
-    public function setLabelFontSize(float $labelFontSize)
+    public function setLabelFontSize(int $labelFontSize)
     {
         $this->labelFontSize = $labelFontSize;
         return $this;
@@ -106,13 +113,11 @@ class QrCode
      */
     public function render()
     {
-        $qrcode = new \Endroid\QrCode\QrCode();
-        $qrcode->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH);
-        $qrcode->setEncoding('UTF-8');
-        $qrcode->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0));
-        $qrcode->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0));
-        $qrcode->setWriterByName('png');
-        $qrcode->setText($this->content);
+        $qrcode = new \Endroid\QrCode\QrCode($this->content);
+        $qrcode->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh());
+        $qrcode->setEncoding(new Encoding('UTF-8'));
+        $qrcode->setForegroundColor(new Color(0, 0, 0, 0));
+        $qrcode->setBackgroundColor(new Color(255, 255, 255, 0));
 
         if ($this->br === null) {
             if ($this->align == 'left') {
@@ -130,24 +135,19 @@ class QrCode
             $qrcode->setSize($this->size);
         }
 
-        if (!empty($this->label)) {
-            $qrcode->setLabel($this->label);
-        }
-
-        if (!empty($this->labelFontSize)) {
-            $qrcode->setLabelFontSize($this->labelFontSize);
-        }
-
-        if (!empty($this->padding)) {
-            $qrcode->setPadding($this->padding);
-        }
-
         if (!empty($styles)) {
             $style = "style='".implode(";", $styles)."'";
         } else {
             $style = "";
         }
 
-        return "<img ".$style." src='{$qrcode->writeDataUri()}'>".$this->br;
+        $writer = new PngWriter();
+        $label = null;
+        if (!empty($this->label)) {
+            $label = Label::create($this->label);
+        }
+        $result = $writer->write($qrcode, null, $label);
+
+        return "<img ".$style." src='{$result->getDataUri()}'>".$this->br;
     }
 }

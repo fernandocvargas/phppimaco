@@ -138,10 +138,10 @@ class Tag
     /**
      * @param string $content
      * @param string|null $label
-     * @param string|null $fontSize
+     * @param int|null $fontSize
      * @return QrCode
      */
-    public function qrcode(string $content, string $label = null, string $fontSize = null)
+    public function qrcode(string $content, string $label = null, int $fontSize = null)
     {
         $qrcode = new QrCode($content);
 
