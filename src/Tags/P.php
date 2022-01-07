@@ -7,6 +7,7 @@ class P
     private $content;
     private $size;
     private $bold;
+    private $margin;
 
     /**
      * P constructor.
@@ -47,6 +48,16 @@ class P
     }
 
     /**
+     * @param array $margin 
+     * @return $this 
+     */
+    public function margin(array $margin)
+    {
+        $this->margin = $margin;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function render()
@@ -57,6 +68,10 @@ class P
         }
         if ($this->bold === true) {
             $style[] = "font-weight: bold";
+        }
+        if (!empty($this->margin)) {
+            $margin = \implode("mm ", $this->margin);
+            $style[] = "margin: {$margin}mm";
         }
 
         if (!empty($style)) {
