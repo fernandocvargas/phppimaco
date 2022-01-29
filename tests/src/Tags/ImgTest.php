@@ -1,4 +1,5 @@
 <?php
+
 namespace Proner\PhpPimacoTest;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +12,7 @@ class ImgTest extends TestCase
         $img = new Img('tests/teste.png');
 
         $render = "<img style='float: left' src='tests/teste.png'>";
-        $this->assertEquals($render,$img->render());
+        $this->assertEquals($render, $img->render());
     }
 
     function test_render_width()
@@ -20,7 +21,7 @@ class ImgTest extends TestCase
         $img->setWidth(10);
 
         $render = "<img style='width: 10mm;float: left' src='tests/teste.png'>";
-        $this->assertEquals($render,$img->render());
+        $this->assertEquals($render, $img->render());
     }
 
     function test_render_rotate()
@@ -29,6 +30,6 @@ class ImgTest extends TestCase
         $img->rotate(90);
 
         $render = "<img style='float: left' src='tests/teste.png' rotate='90'>";
-        $this->assertEquals($render,$img->render());
+        $this->assertEquals($render, $img->render());
     }
 }

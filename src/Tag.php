@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Proner\PhpPimaco;
 
 use Proner\PhpPimaco\Tags\Barcode;
@@ -86,7 +88,7 @@ class Tag
      * @param float $border
      * @return $this
      */
-    public function setBorder(float$border)
+    public function setBorder(float $border)
     {
         $this->border = $border;
         return $this;
@@ -213,7 +215,7 @@ class Tag
         }
 
         if (!empty($style)) {
-            $this->content = "<div style='".implode(";", $style).";'><div style='padding: {$this->padding}mm;'>{$this->content}</div></div>";
+            $this->content = "<div style='" . implode(";", $style) . ";'><div style='padding: {$this->padding}mm;'>{$this->content}</div></div>";
         } else {
             $this->content = "<div><div style='padding: {$this->padding}mm;'>{$this->content}</div></div>";
         }
