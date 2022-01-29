@@ -1,12 +1,12 @@
 {
-    "name": "fernandocvargas/phppimaco",
+    "name": "lucasnpinheiro/phppimaco",
     "description": "Lib para geração de Etiquetas PIMACO ( LIB do Diogo Bemfica )",
     "keywords": ["PIMACO", "etiquetas","tags","hang tags"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Diogo Bemfica",
-            "email": "diogo.fragabemfica@gmail.com"
+            "name": "Lucas Nunes Pinto Pinheiro",
+            "email": "pinheirolouco@gmail.com"
         }
     ],
     "autoload": {
