@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Proner\PhpPimaco\Tags;
 
 class P
@@ -75,7 +77,7 @@ class P
         }
 
         if (!empty($style)) {
-            $content = "<{$tag} style='".implode(";", $style).";'>{$this->content}</{$tag}>";
+            $content = "<{$tag} style='" . implode(";", $style) . ";'>{$this->content}</{$tag}>";
         } else {
             $content = "<{$tag}>{$this->content}</{$tag}>";
         }

@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Proner\PhpPimaco\Tags;
 
 use phpDocumentor\Reflection\Types\Void_;
@@ -62,9 +64,9 @@ class Barcode
     public function setMargin($margin)
     {
         if (is_array($margin)) {
-            $margin = implode("mm ", $margin).'mm';
+            $margin = implode("mm ", $margin) . 'mm';
         } else {
-            $margin = $margin."mm";
+            $margin = $margin . "mm";
         }
         $this->margin = $margin;
         return $this;
@@ -104,7 +106,7 @@ class Barcode
         }
 
         if (!empty($styles)) {
-            $style = "style='".implode(";", $styles)."'";
+            $style = "style='" . implode(";", $styles) . "'";
         } else {
             $style = "";
         }
@@ -113,94 +115,94 @@ class Barcode
 
         switch ($this->typeCode) {
             case 'TYPE_CODE_39':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_39_CHECKSUM':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39_CHECKSUM, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39_CHECKSUM, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_39E':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39E, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39E, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_39E_CHECKSUM':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39E_CHECKSUM, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_39E_CHECKSUM, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_93':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_93, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_93, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_STANDARD_2_5':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_STANDARD_2_5, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_STANDARD_2_5, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_STANDARD_2_5_CHECKSUM':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_STANDARD_2_5_CHECKSUM, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_STANDARD_2_5_CHECKSUM, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_INTERLEAVED_2_5':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_INTERLEAVED_2_5, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_INTERLEAVED_2_5, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_INTERLEAVED_2_5_CHECKSUM':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_INTERLEAVED_2_5_CHECKSUM, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_INTERLEAVED_2_5_CHECKSUM, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_128':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_128_A':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128_A, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128_A, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_128_B':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128_B, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128_B, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_128_C':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128_C, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_128_C, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_EAN_2':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_2, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_2, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_EAN_5':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_5, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_5, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_EAN_8':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_8, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_8, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_EAN_13':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_13, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_EAN_13, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_UPC_A':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_UPC_A, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_UPC_A, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_UPC_E':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_UPC_E, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_UPC_E, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_MSI':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_MSI, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_MSI, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_MSI_CHECKSUM':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_MSI_CHECKSUM, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_MSI_CHECKSUM, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_POSTNET':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_POSTNET, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_POSTNET, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_PLANET':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_PLANET, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_PLANET, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_RMS4CC':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_RMS4CC, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_RMS4CC, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_KIX':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_KIX, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_KIX, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_IMB':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_IMB, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_IMB, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODABAR':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODABAR, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODABAR, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_CODE_11':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_11, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_CODE_11, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_PHARMA_CODE':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_PHARMA_CODE, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_PHARMA_CODE, $this->width, $this->height)) . "'>" . $this->br;
 
             case 'TYPE_PHARMA_CODE_TWO_TRACKS':
-                return "<img ".$style." src='data:image/png;base64,".base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_PHARMA_CODE_TWO_TRACKS, $this->width, $this->height))."'>".$this->br;
+                return "<img " . $style . " src='data:image/png;base64," . base64_encode($barcode->getBarcode($this->content, $barcode::TYPE_PHARMA_CODE_TWO_TRACKS, $this->width, $this->height)) . "'>" . $this->br;
         }
     }
 }

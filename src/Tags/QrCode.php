@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Proner\PhpPimaco\Tags;
 
 use Endroid\QrCode\Builder\Builder;
@@ -121,9 +123,8 @@ class QrCode
             ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
             ->roundBlockSizeMode(new RoundBlockSizeModeNone())
             ->foregroundColor(new Color(0, 0, 0))
-            ->backgroundColor(new Color(255, 255, 255))
-        ;
-        
+            ->backgroundColor(new Color(255, 255, 255));
+
         if ($this->margin !== null) {
             $builder->margin($this->margin);
         }
@@ -148,9 +149,9 @@ class QrCode
 
         $style = "";
         if (!empty($styles)) {
-            $style = "style='".implode(";", $styles)."'";
+            $style = "style='" . implode(";", $styles) . "'";
         }
 
-        return "<img ".$style." src='{$result->getDataUri()}'>".$this->br;
+        return "<img " . $style . " src='{$result->getDataUri()}'>" . $this->br;
     }
 }

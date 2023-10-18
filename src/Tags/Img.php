@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Proner\PhpPimaco\Tags;
 
 class Img
@@ -48,9 +50,9 @@ class Img
     public function setMargin($margin)
     {
         if (is_array($margin)) {
-            $margin = implode("mm ", $margin).'mm';
+            $margin = implode("mm ", $margin) . 'mm';
         } else {
-            $margin = $margin."mm";
+            $margin = $margin . "mm";
         }
         $this->margin = $margin;
         return $this;
@@ -95,7 +97,7 @@ class Img
         }
 
         if (!empty($styles)) {
-            $style = "style='".implode(";", $styles)."'";
+            $style = "style='" . implode(";", $styles) . "'";
         } else {
             $style = "";
         }

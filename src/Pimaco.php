@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace Proner\PhpPimaco;
 
 use Mpdf\Mpdf;
@@ -38,7 +40,7 @@ class Pimaco
         if (!empty($path_template)) {
             $this->path_template = $path_template;
         }
-        $this->file_template = $template.".json";
+        $this->file_template = $template . ".json";
         $this->loadConfig();
 
         $this->tags = new \ArrayObject();
@@ -96,9 +98,9 @@ class Pimaco
 
         $new = $this->tags->count() + 1;
         $cols = $this->columns;
-        $rows = ceil($this->tags->count()/$this->columns) + 1;
+        $rows = ceil($this->tags->count() / $this->columns) + 1;
 
-        if ($new%$cols==0) {
+        if ($new % $cols == 0) {
             $sideCol = "right";
             $margin = false;
         } elseif ($new == ($rows * $cols - ($cols - 1))) {
@@ -134,8 +136,8 @@ class Pimaco
     {
         $this->content = "";
 
-        $rows = ceil($this->tags->count()/$this->columns);
-        $blank = $this->columns*$rows-$this->tags->count();
+        $rows = ceil($this->tags->count() / $this->columns);
+        $blank = $this->columns * $rows - $this->tags->count();
         for ($i = 0; $i < $blank; $i++) {
             $this->addTagBlank();
         }
@@ -163,8 +165,8 @@ class Pimaco
      */
     public function output(string $name = null, string $dest = null)
     {
-//        var_dump($this->render());
-//        exit();
+        //        var_dump($this->render());
+        //        exit();
         $this->pdf->WriteHTML($this->render());
         $this->pdf->Output($name, $dest);
     }
